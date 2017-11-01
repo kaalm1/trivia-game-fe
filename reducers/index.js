@@ -3,6 +3,8 @@ import { NavigationActions } from 'react-navigation';
 
 import { AppNavigator } from '../navigators/AppNavigator';
 
+import game from './gameReducer'
+
 // import login from './loginReducer'
 // import signUp from './signUpReducer'
 // import process from './processReducer'
@@ -75,10 +77,7 @@ function auth(state = initialAuthState, action) {
 const AppReducer = combineReducers({
   nav,
   auth,
-  // login,
-  // signUp,
-  // process,
-  // users
+  game,
 });
 
 export default AppReducer;
