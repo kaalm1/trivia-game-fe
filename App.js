@@ -1,17 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, Platform } from 'react-native';
+import {Root} from 'native-base'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers/index';
+import AppWithNavigationState from './navigators/AppNavigator';
+
+
+// create our store
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default class App extends React.Component {
-  render() {
+
+  render () {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
+      <Root>
+        <Provider store={store}>
+          <AppWithNavigationState />
+        </Provider>
+      </Root>
+    )
   }
 }
+
+AppRegistry.registerComponent('App', () => App);
+
 
 const styles = StyleSheet.create({
   container: {
