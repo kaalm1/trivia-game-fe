@@ -7,9 +7,9 @@ import {bindActionCreators} from 'redux'
 class GameScreen extends React.Component{
   render(){
     return(
-      <Conatiner>
+      <Container>
 
-      </Conatiner>
+      </Container>
     )
   }
 }

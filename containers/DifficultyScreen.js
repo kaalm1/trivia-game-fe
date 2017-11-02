@@ -11,6 +11,7 @@ class DifficultyScreen extends React.Component {
 
 
   onPress = (difficulty) => {
+    this.props.gameSetup({difficulty: difficulty})
     const { navigate } = this.props.navigation;
     navigate('Categories')
   }
@@ -19,13 +20,13 @@ class DifficultyScreen extends React.Component {
     return (
       <Container style={styles.container}>
 
-          <Button block rounded success style={styles.button} onPress={()=>this.onPress('Easy')}>
+          <Button block rounded success style={styles.button} onPress={()=>this.onPress('easy')}>
             <Text>Easy</Text>
           </Button>
-          <Button block rounded style={styles.button} onPress={()=>this.onPress('Medium')}>
+          <Button block rounded style={styles.button} onPress={()=>this.onPress('medium')}>
             <Text>Medium</Text>
           </Button>
-          <Button block rounded danger style={styles.button} onPress={()=>this.onPress('Hard')}>
+          <Button block rounded danger style={styles.button} onPress={()=>this.onPress('hard')}>
             <Text>Hard</Text>
           </Button>
 

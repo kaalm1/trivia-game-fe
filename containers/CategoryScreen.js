@@ -4,7 +4,7 @@ import {Container, Content, Form, Picker, Item, Button, Text} from 'native-base'
 
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-// import {gameSetup, getCategories} from '../actions/game'
+import {gameSetup, createGame} from '../actions/game'
 
 class CategoryScreen extends React.Component {
   state = {
@@ -16,15 +16,14 @@ class CategoryScreen extends React.Component {
   }
 
   onPress = () => {
-    this.props.gameSetup(this.state.selected)
-    this.props.createGame
+    this.props.gameSetup({category: this.state.selected})
+    this.props.createGame()
 
     const {navigate} = this.props.navigation
     navigate('Game')
   }
 
   render(){
-    console.log(this.props.categories)
     return(
       <Container style={styles.container}>
         <Form>
@@ -67,4 +66,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(CategoryScreen);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    gameSetup,
+    createGame
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryScreen);
