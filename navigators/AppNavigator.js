@@ -4,9 +4,15 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import Home from '../containers/HomeScreen'
+import Difficulty from '../containers/DifficultyScreen'
+import Categories from '../containers/CategoryScreen'
+import Game from '../containers/GameScreen'
 
 export const AppNavigator = StackNavigator({
   Home: {screen: Home},
+  Difficulty: {screen: Difficulty},
+  Categories: {screen: Categories},
+  Game: {screen: Game}
 });
 
 const AppWithNavigationState = ({ dispatch, nav }) => (

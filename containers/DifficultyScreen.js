@@ -5,30 +5,28 @@ import {Text, Picker, Container, Content, Form, Item, Button} from 'native-base'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {gameSetup, getCategories} from '../actions/game'
-import altCategories from '../assets/categoryList'
 
 
-class HomeScreen extends React.Component {
-  // Use Node && MongoDB to save the information
-  componentWillMount(){
-    fetch('https://opentdb.com/api_category.php')
-    .then(res=>res.json())
-    .then(data=>this.props.getCategories(data.trivia_categories))
-    .catch(()=>this.props.getCategories(altCategories.categories))
-  }
+class DifficultyScreen extends React.Component {
 
-  onPress = () => {
-    const {navigate} = this.props.navigation
-    navigate('Difficulty')
+
+  onPress = (difficulty) => {
+    const { navigate } = this.props.navigation;
+    navigate('Categories')
   }
 
   render () {
     return (
       <Container style={styles.container}>
 
-          <Text>Welcome to TrivaZilla!</Text>
-          <Button block rounded style={styles.button} onPress={this.onPress}>
-            <Text>Begin Trivia!</Text>
+          <Button block rounded success style={styles.button} onPress={()=>this.onPress('Easy')}>
+            <Text>Easy</Text>
+          </Button>
+          <Button block rounded style={styles.button} onPress={()=>this.onPress('Medium')}>
+            <Text>Medium</Text>
+          </Button>
+          <Button block rounded danger style={styles.button} onPress={()=>this.onPress('Hard')}>
+            <Text>Hard</Text>
           </Button>
 
       </Container>
@@ -55,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(null,mapDispatchToProps)(HomeScreen);
+export default connect(null,mapDispatchToProps)(DifficultyScreen);
