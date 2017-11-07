@@ -8,7 +8,7 @@ export default function loginReducer(state= {loading: false, categories: [], gam
     case 'LOADING_GAME':
       return Object.assign({}, state, {loading: true})
     case 'BEGIN_GAME':
-      return Object.assign({}, state, {loading: false, questions: action.payload})
+      return Object.assign({}, state, {loading: false, questions: action.payload.results})
     default:
       return state;
 
