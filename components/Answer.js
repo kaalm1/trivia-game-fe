@@ -13,7 +13,7 @@ class Answer extends React.Component{
            <CardItem>
              <Body>
                <Text>
-                  //Your text here
+                  {this.props.answer}
                </Text>
              </Body>
            </CardItem>
