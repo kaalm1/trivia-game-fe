@@ -7,12 +7,14 @@ import Home from '../containers/HomeScreen'
 import Difficulty from '../containers/DifficultyScreen'
 import Categories from '../containers/CategoryScreen'
 import Game from '../containers/GameScreen'
+import GameEnd from '../containers/GameEndScreen'
 
 export const AppNavigator = StackNavigator({
   Home: {screen: Home},
   Difficulty: {screen: Difficulty},
   Categories: {screen: Categories},
-  Game: {screen: Game}
+  Game: {screen: Game},
+  GameEnd: {screen: GameEnd}
 });
 
 const AppWithNavigationState = ({ dispatch, nav }) => (

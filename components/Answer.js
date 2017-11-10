@@ -1,5 +1,5 @@
 import React from 'react'
-import {ActivityIndicator} from 'react-native'
+import {ActivityIndicator, TouchableOpacity, StyleSheet} from 'react-native'
 import {Container, Text, Card, CardItem, Body} from 'native-base'
 
 import { connect } from 'react-redux'
@@ -9,18 +9,32 @@ class Answer extends React.Component{
 
   render(){
     return(
+      <CardItem>
         <Card>
-           <CardItem>
-             <Body>
+           <CardItem button onPress={()=>this.props.onAnswer(this.props.answer)}>
+             <Body style={styles.container}>
                <Text>
                   {this.props.answer}
                </Text>
              </Body>
            </CardItem>
          </Card>
+      </CardItem>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    margin: 10
+  }
+});
 
 
 export default connect(null)(Answer);

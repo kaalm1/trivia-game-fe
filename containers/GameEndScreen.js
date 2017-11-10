@@ -5,14 +5,13 @@ import {Container, Text} from 'native-base'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 
-import Question from '../components/Question'
 
 class GameScreen extends React.Component{
 
   render(){
     return(
       <Container>
-        {this.props.isLoading ? <ActivityIndicator /> : <Question navigation={this.props.navigation}/>}
+        <Text>Game End!!</Text>
       </Container>
     )
   }
