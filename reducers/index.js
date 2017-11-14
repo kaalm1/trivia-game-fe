@@ -52,6 +52,14 @@ function nav(state = initialNavState, action) {
         state
       );
       break;
+    case 'Game':
+      nextState = AppNavigator.router.getStateForAction(NavigationActions.init());
+      nextState.routes[0].routeName = 'Game'
+      break;
+    case 'GameEnd':
+      nextState = AppNavigator.router.getStateForAction(NavigationActions.init());
+      nextState.routes[0].routeName = 'GameEnd'
+      break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;

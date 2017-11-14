@@ -23,6 +23,7 @@ class HomeScreen extends React.Component {
   }
 
   render () {
+    console.log(this.props.navigation)
     return (
       <Container style={styles.container}>
 

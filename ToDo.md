@@ -1,7 +1,7 @@
 ## TODO list
 
-* Add Giphy for each trivia question
-* Shuffle answers
+* Add Timer to each question
+  **-Timer should be bar that decreases like in fibbage (under the image and it also shows in writing the amount of seconds as it decreases...)-**
 * Design layout of answers - what is the most intuitive and cleanest design?
   *- Who Wants to be a Millionaire -*
   *- Regular List & you can pick one -*

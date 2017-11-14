@@ -1,6 +1,7 @@
 import Questions from '../data/questions'
 import Giphy from '../data/giphy'
 var he = require('he');
+var pos = require('pos');
 
 export function gameSetup(info){
   return {type: 'UPDATE_SETUP', payload: info}
@@ -66,7 +67,12 @@ export function findKeyWords(words){
   if (t.length !== 0){
     return t
   } else {
-    return t
+    let sentence = new pos.Lexer().lex(words);
+    let tags = new pos.Tagger()
+      .tag(sentence)
+      .filter(tag=>tag[1].includes('NN'))
+      .map(tag=>tag[0]).join('+')
+    return tags
   }
 }
 
