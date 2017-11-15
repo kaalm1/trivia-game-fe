@@ -1,14 +1,17 @@
 import React from 'react'
 import {StyleSheet} from 'react-native'
-import {Text, Picker, Container, Content, Form, Item, Button} from 'native-base'
+import {Text, Picker, Container, Content, Form, Item, Button, Icon} from 'native-base'
 
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {gameSetup, getCategories} from '../actions/game'
+import {navHome} from '../actions/nav'
 
 
 class DifficultyScreen extends React.Component {
-
+  static navigationOptions = ({navigation}) => ({
+    headerLeft: <Icon name='arrow-back' style={{margin: 10, color:'blue', fontSize:35}} onPress={()=>navigation.dispatch({type: 'Home'})}/>
+  });
 
   onPress = (difficulty) => {
     this.props.gameSetup({difficulty: difficulty})
@@ -50,7 +53,8 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     gameSetup,
-    getCategories
+    getCategories,
+    navHome
   }, dispatch);
 };
 

@@ -40,10 +40,8 @@ function nav(state = initialNavState, action) {
       );
       break;
     case 'Home':
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Home' }),
-        state
-      );
+      nextState = AppNavigator.router.getStateForAction(NavigationActions.init());
+      nextState.routes[0].routeName = 'Home'
       break;
     case 'Chat':
       nextState = AppNavigator.router.getStateForAction(
@@ -52,6 +50,10 @@ function nav(state = initialNavState, action) {
         state
       );
       break;
+    case 'Difficulty':
+      nextState = AppNavigator.router.getStateForAction(NavigationActions.init());
+      nextState.routes[0].routeName = 'Difficulty'
+      break;
     case 'Game':
       nextState = AppNavigator.router.getStateForAction(NavigationActions.init());
       nextState.routes[0].routeName = 'Game'
@@ -59,6 +61,10 @@ function nav(state = initialNavState, action) {
     case 'GameEnd':
       nextState = AppNavigator.router.getStateForAction(NavigationActions.init());
       nextState.routes[0].routeName = 'GameEnd'
+      break;
+    case 'Review':
+      nextState = AppNavigator.router.getStateForAction(NavigationActions.init());
+      nextState.routes[0].routeName = 'Review'
       break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);

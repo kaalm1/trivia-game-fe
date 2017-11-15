@@ -17,10 +17,11 @@ class CategoryScreen extends React.Component {
   }
 
   onPress = () => {
-    this.props.gameSetup({category: this.state.selected})
-    this.props.gameStart()
-    // this.props.navigation.dispatch({type:'Game'})
-    this.props.navGame()
+    if (this.state.selected){
+      this.props.gameSetup({category: this.state.selected})
+      this.props.gameStart()
+      this.props.navGame()
+    }
   }
 
   render(){
