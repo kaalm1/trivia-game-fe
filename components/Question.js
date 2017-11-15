@@ -1,5 +1,5 @@
 import React from 'react'
-import {Image, ActivityIndicator} from 'react-native'
+import {Image, ActivityIndicator, Animated} from 'react-native'
 import {Container, Text, Header} from 'native-base'
 import ProgressBar from 'react-native-progress/Bar'
 import { connect } from 'react-redux'
@@ -48,8 +48,12 @@ class Question extends React.Component{
     this.setState({sT})
   }
 
-  nextQuestion = () => {
+  onLoad = () => {
     this.animate()
+    this.setState({loading:false})
+  }
+
+  nextQuestion = () => {
     const q = this.props.questions[this.state.currentQ]
     const arr = [...q.incorrect_answers,q.correct_answer]
     shuffle(arr)
@@ -97,15 +101,16 @@ class Question extends React.Component{
   render(){
     return(
       <Container>
-        <Header><Text>{this.state.question}</Text></Header>
-        {this.state.url ? <Image source = {{uri: this.state.url}} style={{height:250, resizeMode: 'contain', borderRadius:35, margin:10}}/> : <ActivityIndicator />}
-        <ProgressBar
+        {!this.state.loading ? <Header><Text>{this.state.question}</Text></Header> : null }
+        {/* {this.state.url ? <Image source = {{uri: this.state.url}} style={{height:250, resizeMode: 'contain', borderRadius:35, margin:10}}/> : <ActivityIndicator />} */}
+        {this.state.url ? <Animated.Image source = {{uri: this.state.url}} style={{height:250, resizeMode: 'contain', borderRadius:35, margin:10}} onLoadStart={()=>this.setState({loading:true})} onLoad={this.onLoad}/> : <ActivityIndicator />}
+        {!this.state.loading ? <ProgressBar
             progress={1-this.state.progress}
             unfilledColor="#FFF"
             color='#3399FF'
             width={null}
-        />
-        {this.state.answers.map(answer=><Answer answer={answer} key={answer} onAnswer={this.onAnswer}/>)}
+        /> : null }
+        {!this.state.loading ? this.state.answers.map(answer=><Answer answer={answer} key={answer} onAnswer={this.onAnswer}/>) : null}
       </Container>
     )
   }
