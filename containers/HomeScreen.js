@@ -1,16 +1,24 @@
 import React from 'react'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {Text, Picker, Container, Content, Form, Item, Button} from 'native-base'
-
+import { Font } from 'expo'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {gameSetup, getCategories} from '../actions/game'
+import {getCategories} from '../actions/game'
 import altCategories from '../assets/categoryList'
 
+import BackgroundImage from './BackgroundImage'
 
 class HomeScreen extends React.Component {
   // Use Node && MongoDB to save the information
-  componentWillMount(){
+  static navigationOptions = {
+    headerTintColor: 'white',
+    title: 'TriZilla',
+    headerStyle: {backgroundColor: 'teal'}
+  }
+
+  componentDidMount(){
+
     fetch('https://opentdb.com/api_category.php')
     .then(res=>res.json())
     .then(data=>this.props.getCategories(data.trivia_categories))
@@ -23,16 +31,19 @@ class HomeScreen extends React.Component {
   }
 
   render () {
-    console.log(this.props.navigation)
     return (
-      <Container style={styles.container}>
 
-          <Text>Welcome to TrivaZilla!</Text>
-          <Button block rounded style={styles.button} onPress={this.onPress}>
-            <Text>Begin Trivia!</Text>
-          </Button>
+        <Container>
+            <BackgroundImage source={require('../assets/images/background.jpg')}>
+              <View style={styles.container}>
+                <Text>Welcome to TrivaZilla!</Text>
+                <Button block rounded style={styles.button} onPress={this.onPress}>
+                  <Text>Begin Trivia!</Text>
+                </Button>
+              </View>
+            </BackgroundImage>
+        </Container>
 
-      </Container>
     )
   }
 }
@@ -40,18 +51,16 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   button: {
     margin: 10
-  }
+  },
 });
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    gameSetup,
     getCategories
   }, dispatch);
 };

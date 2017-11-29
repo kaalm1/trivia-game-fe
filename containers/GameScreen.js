@@ -7,12 +7,16 @@ import {bindActionCreators} from 'redux'
 
 import Question from '../components/Question'
 
+import BackgroundImage from './BackgroundImage'
+
 class GameScreen extends React.Component{
 
   render(){
     return(
       <Container>
-        {this.props.isLoading ? <ActivityIndicator /> : <Question navigation={this.props.navigation}/>}
+        {/* <BackgroundImage source={require('../assets/images/background.jpg')}> */}
+          {this.props.isLoading ? <ActivityIndicator /> : <Question navigation={this.props.navigation}/>}
+        {/* </BackgroundImage> */}
       </Container>
     )
   }

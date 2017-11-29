@@ -1,11 +1,13 @@
 import React from 'react'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {Container, Content, Form, Picker, Item, Button, Text} from 'native-base'
 
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {gameSetup, gameStart} from '../actions/game'
 import {navGame} from '../actions/nav'
+
+import BackgroundImage from './BackgroundImage'
 
 class CategoryScreen extends React.Component {
   state = {
@@ -26,24 +28,28 @@ class CategoryScreen extends React.Component {
 
   render(){
     return(
-      <Container style={styles.container}>
-        <Form>
-          <Item>
-          <Picker
-            iosHeader="Select one"
-            mode="dropdown"
-            placeholder='Category'
-            selectedValue={this.state.selected}
-            onValueChange={this.onValueChange}
-            tyle={{height:100, margin:-15}}
-          >
-            {this.props.categories.map(category=><Picker.Item label={category.name} value={category.id} key={category.id}/>)}
-          </Picker>
-          </Item>
-        </Form>
-        <Button block rounded style={styles.button} onPress={this.onPress}>
-          <Text>Let's Play!</Text>
-        </Button>
+      <Container>
+        <BackgroundImage source={require('../assets/images/background.jpg')}>
+        <View style={styles.container}>
+          <Form>
+            <Item>
+            <Picker
+              iosHeader="Select one"
+              mode="dropdown"
+              placeholder='Category'
+              selectedValue={this.state.selected}
+              onValueChange={this.onValueChange}
+              tyle={{height:100, margin:-15}}
+            >
+              {this.props.categories.map(category=><Picker.Item label={category.name} value={category.id} key={category.id}/>)}
+            </Picker>
+            </Item>
+          </Form>
+          <Button block rounded style={styles.button} onPress={this.onPress}>
+            <Text>Let's Play!</Text>
+          </Button>
+          </View>
+      </BackgroundImage>
       </Container>
     )
   }
@@ -52,7 +58,6 @@ class CategoryScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

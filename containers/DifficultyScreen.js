@@ -1,12 +1,13 @@
 import React from 'react'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {Text, Picker, Container, Content, Form, Item, Button, Icon} from 'native-base'
 
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {gameSetup, getCategories} from '../actions/game'
+import {gameSetup} from '../actions/game'
 import {navHome} from '../actions/nav'
 
+import BackgroundImage from './BackgroundImage'
 
 class DifficultyScreen extends React.Component {
   static navigationOptions = ({navigation}) => ({
@@ -21,18 +22,20 @@ class DifficultyScreen extends React.Component {
 
   render () {
     return (
-      <Container style={styles.container}>
-
-          <Button block rounded success style={styles.button} onPress={()=>this.onPress('easy')}>
-            <Text>Easy</Text>
-          </Button>
-          <Button block rounded style={styles.button} onPress={()=>this.onPress('medium')}>
-            <Text>Medium</Text>
-          </Button>
-          <Button block rounded danger style={styles.button} onPress={()=>this.onPress('hard')}>
-            <Text>Hard</Text>
-          </Button>
-
+      <Container>
+        <BackgroundImage source={require('../assets/images/background.jpg')}>
+          <View style={styles.container}>
+            <Button block rounded success style={styles.button} onPress={()=>this.onPress('easy')}>
+              <Text>Easy</Text>
+            </Button>
+            <Button block rounded style={styles.button} onPress={()=>this.onPress('medium')}>
+              <Text>Medium</Text>
+            </Button>
+            <Button block rounded danger style={styles.button} onPress={()=>this.onPress('hard')}>
+              <Text>Hard</Text>
+            </Button>
+            </View>
+        </BackgroundImage>
       </Container>
     )
   }
@@ -41,7 +44,6 @@ class DifficultyScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -53,7 +55,6 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     gameSetup,
-    getCategories,
     navHome
   }, dispatch);
 };
