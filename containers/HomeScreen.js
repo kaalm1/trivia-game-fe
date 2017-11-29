@@ -1,7 +1,7 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet, View, Dimensions} from 'react-native'
 import {Text, Picker, Container, Content, Form, Item, Button} from 'native-base'
-import { Font } from 'expo'
+import { Font, LinearGradient } from 'expo'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {getCategories} from '../actions/game'
@@ -9,12 +9,26 @@ import altCategories from '../assets/categoryList'
 
 import BackgroundImage from './BackgroundImage'
 
+const {width, height} = Dimensions.get('window')
+
+const MyHeader = () => {
+  return(
+    <LinearGradient
+     colors={['teal', 'gray', 'beige', 'white']}
+     style={{ alignSelf: 'center', alignItems: 'center', justifyContent: 'center', height:40 , width:width}}
+   >
+     <Text style={{ fontSize: 20, backgroundColor: 'transparent', fontFamily: 'PermanentMarker'}}>
+       TriZilla!
+     </Text>
+   </LinearGradient>
+  )
+
+}
+
 class HomeScreen extends React.Component {
   // Use Node && MongoDB to save the information
   static navigationOptions = {
-    headerTintColor: 'white',
-    title: 'TriZilla',
-    headerStyle: {backgroundColor: 'teal'}
+    headerTitle: <MyHeader />
   }
 
   componentDidMount(){

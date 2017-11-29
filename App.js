@@ -6,6 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 import AppWithNavigationState from './navigators/AppNavigator';
+import {Font} from 'expo'
 
 
 // create our store
@@ -13,12 +14,22 @@ import AppWithNavigationState from './navigators/AppNavigator';
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default class App extends React.Component {
+  state = {
+    isLoaded: false
+  }
+
+  async componentDidMount(){
+    await Font.loadAsync({
+      PermanentMarker: require('./assets/fonts/PermanentMarker.ttf'),
+    });
+    this.setState({isLoaded:true})
+  }
 
   render () {
     return (
       <Root>
         <Provider store={store}>
-          <AppWithNavigationState />
+          {this.state.isLoaded? <AppWithNavigationState /> : <View/>}
         </Provider>
       </Root>
     )
