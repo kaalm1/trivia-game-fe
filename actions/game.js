@@ -1,7 +1,9 @@
+import Config from '../config'
 import Questions from '../data/questions'
 import Giphy from '../data/giphy'
 var he = require('he');
 var pos = require('pos');
+const API_URL = Config.API_URL || Config.API_TEMP_URL
 
 export function gameSetup(info){
   return {type: 'UPDATE_SETUP', payload: info}
@@ -43,7 +45,8 @@ export function getAllGiphys(data){
 export function getGiphy(question, maxQ){
   return (dispatch) => {
     const words = findKeyWords(question.question)
-    const url = `https://api.giphy.com/v1/gifs/random?api_key=l4LWSJzWfF2DHX4u8wyq79oHWVK4yV7E&tag=${words}&rating=G`
+    // const url = `https://api.giphy.com/v1/gifs/random?api_key=l4LWSJzWfF2DHX4u8wyq79oHWVK4yV7E&tag=${words}&rating=G`
+    const url = API_URL + `/games/giphy/${words}`
     return fetch(url)
     .then(res=>res.json())
     .then(gif=>dispatch({type: 'ADD_QUESTION', payload: Object.assign({},question,{giphy: gif.data.image_url})}))

@@ -9,7 +9,7 @@ class Answer extends React.Component{
 
   render(){
     return(
-      <CardItem>
+      <CardItem style={{backgroundColor:'transparent'}}>
         <Card>
            <CardItem button onPress={()=>this.props.onAnswer(this.props.answer)}>
              <Body style={styles.container}>
@@ -27,7 +27,7 @@ class Answer extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
   },

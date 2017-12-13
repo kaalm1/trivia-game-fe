@@ -8,8 +8,10 @@ import {getCategories} from '../actions/game'
 import altCategories from '../assets/categoryList'
 
 import BackgroundImage from './BackgroundImage'
-
 const {width, height} = Dimensions.get('window')
+
+var randomColor = require('randomcolor')
+var color = randomColor()
 
 const MyHeader = () => {
   return(
@@ -45,6 +47,7 @@ class HomeScreen extends React.Component {
   }
 
   render () {
+    console.log(color)
     return (
 
         <Container>
