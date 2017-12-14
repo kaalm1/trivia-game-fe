@@ -3,7 +3,7 @@ import Questions from '../data/questions'
 import Giphy from '../data/giphy'
 var he = require('he');
 var pos = require('pos');
-const API_URL = Config.API_URL || Config.API_TEMP_URL
+const API_URL = Config.API_URL || Config.API_DEV
 
 export function gameSetup(info){
   return {type: 'UPDATE_SETUP', payload: info}

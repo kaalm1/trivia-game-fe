@@ -1,3 +1,11 @@
 {
-  "API_TEMP_URL":"http://localhost:3000"
+  "API_DEV":"http://localhost:3000",
+  "API_OPTIONS": {
+    "method": "post",
+    "headers": {
+        "content-type": "application/json",
+        "accept": "application/json"
+      }
+    },
+  "FB_REDIRECT_URL":"http://localhost:3000/facebook"
 }

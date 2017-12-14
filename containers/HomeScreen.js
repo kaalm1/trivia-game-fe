@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, View, Dimensions} from 'react-native'
+import {StyleSheet, View, Dimensions, Image} from 'react-native'
 import {Text, Picker, Container, Content, Form, Item, Button} from 'native-base'
 import { Font, LinearGradient } from 'expo'
 import { connect } from 'react-redux'
@@ -8,6 +8,10 @@ import {getCategories} from '../actions/game'
 import altCategories from '../assets/categoryList'
 
 import BackgroundImage from './BackgroundImage'
+
+import FBLogin from '../components/FacebookLogin'
+import GoogleLogin from '../components/GoogleLogin'
+import Hr from '../components/hr'
 const {width, height} = Dimensions.get('window')
 
 var randomColor = require('randomcolor')
@@ -52,8 +56,17 @@ class HomeScreen extends React.Component {
 
         <Container>
             <BackgroundImage source={require('../assets/images/background.jpg')}>
+              <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                <Image style={{flex:1, resizeMode:'contain'}} source={require('../assets/images/logo3.png')}/>
+                <Text style={[styles.subtitle,{color:'#1f94c6', backgroundColor:'transparent'}]}>Test Your Limits!</Text>
+              </View>
               <View style={styles.container}>
                 <Text>Welcome to TrivaZilla!</Text>
+                <View style={{flex:1, marginTop:30, marginBottom:30}}>
+                  <FBLogin />
+                  <Hr lineColor='gray' text="OR"/>
+                  <GoogleLogin />
+                </View>
                 <Button block rounded style={styles.button} onPress={this.onPress}>
                   <Text>Begin Trivia!</Text>
                 </Button>

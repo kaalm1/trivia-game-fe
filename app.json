@@ -1,5 +1,18 @@
-{
-  "expo": {
-    "sdkVersion": "22.0.0"
-  }
-}
+ {
+   "expo": {
+    "name": "TriviaZilla",
+    "icon": "./assets/images/bd-logo-sm.png",
+    "version": "1.0.0",
+    "slug": "trivia-game-fe",
+    "sdkVersion": "22.0.0",
+    "ios": {
+      "bundleIdentifier": "com.breakthroughworldwide.triviazilla"
+    },
+    "android": {
+      "package": "com.breakthroughworldwide.triviazilla"
+    }
+  },
+  "facebookScheme":"fb183317342251398",
+  "facebookAppId":"183317342251398",
+  "facebookDisplayName":"TriviaZilla"
+ }
