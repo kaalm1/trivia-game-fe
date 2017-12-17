@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {saveCategory} from '../../actions/setup'
+import {saveCategory, setupMultiplayerCode} from '../../actions/setup'
+import {gameStart} from '../../actions/game'
+import {navGame} from '../../actions/nav'
 import {View, Text, StyleSheet, TextInput} from 'react-native'
 import {Button} from 'native-base'
 import ModalSelector from 'react-native-modal-selector'
@@ -22,7 +24,16 @@ class Category extends React.Component{
   }
 
   onPress = (category) => {
-    this.props.saveCategory(category)
+    this.setState({textInputValue:category.label})
+    this.props.saveCategory(category.key)
+    if (this.props.singlePlayer){
+      // Begin Game
+      this.props.gameStart()
+      this.props.navGame()
+    } else {
+      // Go to multiplayer screen for code -- give out and then begin!
+      this.props.setupMultiplayerCode()
+    }
   }
 
   render(){
@@ -32,7 +43,7 @@ class Category extends React.Component{
         <ModalSelector
            data={categories}
            initValue="Categories"
-           onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+           onChange={(option)=>{this.onPress(option)}}>
 
            <TextInput
                style={{borderWidth:1, borderColor:'#ccc', padding:10, height:30, width:100}}
@@ -49,12 +60,16 @@ class Category extends React.Component{
 const mapStateToProps = (state) => {
   return {
     categories: state.game.categories,
+    singlePlayer: state.setup.singlePlayer
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    saveCategory
+    saveCategory,
+    setupMultiplayerCode,
+    gameStart,
+    navGame
   }, dispatch);
 };
 

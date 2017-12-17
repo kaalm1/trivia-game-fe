@@ -10,6 +10,10 @@ export function setupCategory(){
   return {type: 'NEXT_PAGE', payload: 'category'}
 }
 
+export function setupMultiplayerCode(){
+  return {type: 'NEXT_PAGE', payload: 'multiplayerCode'}
+}
+
 export function singlePlayer(info){
   return {type: 'GAME_TYPE', payload:info}
 }
