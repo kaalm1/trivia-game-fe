@@ -8,14 +8,17 @@ import {getCategories} from '../actions/game'
 import altCategories from '../assets/categoryList'
 
 import BackgroundImage from './BackgroundImage'
+import Login from '../components/Setup/login'
+import SingleOrMulti from '../components/Setup/singleOrMulti'
+import Difficulty from '../components/Setup/difficulty'
+import Category from '../components/Setup/category'
+import MultiplayerCode from '../components/Setup/multiplayerCode'
 
-import FBLogin from '../components/FacebookLogin'
-import GoogleLogin from '../components/GoogleLogin'
-import Hr from '../components/hr'
 const {width, height} = Dimensions.get('window')
 
 var randomColor = require('randomcolor')
 var color = randomColor()
+
 
 const MyHeader = () => {
   return(
@@ -51,25 +54,38 @@ class HomeScreen extends React.Component {
   }
 
   render () {
-    console.log(color)
+    let content;
+    switch (this.props.page) {
+    case 'login':
+      content = <Login />;
+      break;
+    case 'singleOrMulti':
+      content = <SingleOrMulti />;
+      break;
+    case 'difficulty':
+      content = <Difficulty />;
+      break;
+    case 'category':
+      content = <Category />;
+      break;
+    case 'multiplayerCode':
+      content = <MultiplayerCode />;
+      break;
+    default:
+      content = <Login />;
+      break;
+    }
+
     return (
 
         <Container>
             <BackgroundImage source={require('../assets/images/background.jpg')}>
               <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-                <Image style={{flex:1, resizeMode:'contain'}} source={require('../assets/images/logo3.png')}/>
+                <Image style={{flex:1, resizeMode:'contain', width:width-10}} source={require('../assets/images/logo3.png')}/>
                 <Text style={[styles.subtitle,{color:'#1f94c6', backgroundColor:'transparent'}]}>Test Your Limits!</Text>
               </View>
               <View style={styles.container}>
-                <Text>Welcome to TrivaZilla!</Text>
-                <View style={{flex:1, marginTop:30, marginBottom:30}}>
-                  <FBLogin />
-                  <Hr lineColor='gray' text="OR"/>
-                  <GoogleLogin />
-                </View>
-                <Button block rounded style={styles.button} onPress={this.onPress}>
-                  <Text>Begin Trivia!</Text>
-                </Button>
+                  {content}
               </View>
             </BackgroundImage>
         </Container>
@@ -89,10 +105,16 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = (state) => {
+  return {
+    page: state.setup.page,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     getCategories
   }, dispatch);
 };
 
-export default connect(null,mapDispatchToProps)(HomeScreen);
+export default connect(mapStateToProps,mapDispatchToProps)(HomeScreen);

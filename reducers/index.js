@@ -4,6 +4,7 @@ import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../navigators/AppNavigator';
 
 import game from './gameReducer'
+import setup from './setupReducer'
 
 // import login from './loginReducer'
 // import signUp from './signUpReducer'
@@ -92,6 +93,7 @@ const AppReducer = combineReducers({
   nav,
   auth,
   game,
+  setup,
 });
 
 export default AppReducer;

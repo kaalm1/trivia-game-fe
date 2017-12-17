@@ -1,4 +1,4 @@
-export default function loginReducer(state= {loading: false, categories: [], questions: [], correct: [], wrong: [], maxQ: 10, gameData: {}}, action) {
+export default function gameReducer(state= {loading: false, categories: [], questions: [], correct: [], wrong: [], maxQ: 10, gameData: {}}, action) {
   switch (action.type) {
 
     case 'GAME_SETUP_CATEGORIES':

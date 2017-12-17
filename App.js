@@ -21,6 +21,7 @@ export default class App extends React.Component {
   async componentDidMount(){
     await Font.loadAsync({
       PermanentMarker: require('./assets/fonts/PermanentMarker.ttf'),
+      Cabin: require('./assets/fonts/Cabin-Regular.ttf'),
     });
     this.setState({isLoaded:true})
   }
