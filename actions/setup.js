@@ -2,6 +2,10 @@ export function setupSoM(){
   return {type: 'NEXT_PAGE', payload: 'singleOrMulti'}
 }
 
+export function setupCodeOrNew(){
+  return {type: 'NEXT_PAGE', payload: 'multiCodeOrNew'}  
+}
+
 export function setupDifficulty(){
   return {type: 'NEXT_PAGE', payload: 'difficulty'}
 }

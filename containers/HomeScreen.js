@@ -10,6 +10,7 @@ import altCategories from '../assets/categoryList'
 import BackgroundImage from './BackgroundImage'
 import Login from '../components/Setup/login'
 import SingleOrMulti from '../components/Setup/singleOrMulti'
+import CodeOrNew from '../components/Setup/multiCodeOrNew'
 import Difficulty from '../components/Setup/difficulty'
 import Category from '../components/Setup/category'
 import MultiplayerCode from '../components/Setup/multiplayerCode'
@@ -61,6 +62,9 @@ class HomeScreen extends React.Component {
       break;
     case 'singleOrMulti':
       content = <SingleOrMulti />;
+      break;
+    case 'multiCodeOrNew':
+      content = <CodeOrNew />;
       break;
     case 'difficulty':
       content = <Difficulty />;

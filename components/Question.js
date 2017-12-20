@@ -22,6 +22,7 @@ class Question extends React.Component{
     loading: true,
     sT: '',
     sI: '',
+    timeOver: false,
   }
 
   componentDidMount(){

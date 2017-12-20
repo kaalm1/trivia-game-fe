@@ -24,6 +24,7 @@
     "moment": "^2.19.1",
     "native-base": "^2.3.3",
     "pos": "^0.4.2",
+    "random-string": "^0.2.0",
     "randomcolor": "^0.5.3",
     "react": "16.0.0",
     "react-native": "0.50.3",
